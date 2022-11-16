@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+.select {
+  display: inline-block;
+  margin: 0 5px;
+  color: #666;
+
+  position: relative;
+
+  white-space: nowrap;
+}
+
+.title {
+  min-width: 150px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.title .iconfont {
+  font-size: 10px;
+  transition: .3s;
+}
+
+.options {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  max-height: 300px;
+  min-width: 100%;
+  padding: 10px;
+  top: 50px;
+  background-color: #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .3);
+
+  position: absolute;
+
+  /*⭐网格布局*/
+  display: grid;
+  /* grid-template-columns: repeat(3, 1fr); */
+  /*纵向按列排列*/
+  grid-auto-flow: column;
+  grid-template-rows: repeat(auto-fit, 20px);
+  row-gap: 6px;
+  column-gap: 26px;
+
+  justify-items: left;
+
+  transform: scaleY(0);
+  transition: 0.3s;
+  opacity: 0;
+
+  transform-origin: center -10px;
+}
+
+.options li {
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
+/*下拉框小箭头*/
+.options::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 70px;
+  top: -6px;
+  border: 1px solid #ccc;
+  transform: rotate(45deg);
+  border-bottom: none;
+  border-right: none;
+  background-color: #fff;
+}
+
+.options li.active {
+  background-color: #eec05a;
+}
+
+/*展开*/
+.select.expand .options {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/*展开时图标变形*/
+.select.expand .iconfont {
+  transform: rotateZ(180deg);
+}
+
+.select.disabled {
+  color: #ccc;
+}
+
+.select.disabled .title {
+  cursor: not-allowed;
+}
